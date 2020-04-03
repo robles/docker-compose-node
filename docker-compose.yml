@@ -1,0 +1,24 @@
+version: '3.4'
+
+services:
+  api:
+    image: rpg-quest-api
+    build: ./server
+    volumes:
+      - ./server:/usr/src/app
+    environment:
+      NODE_ENV: development
+    ports:
+      - 3000:3000
+      - 9229:9229
+    # networks:
+    #   - backend
+    command: npm start
+  db:
+    image: mongo:4.2.5-bionic
+    ports:
+      - 27017:27017
+    # networks:
+    #   - backend
+# networks:
+#   backend:
